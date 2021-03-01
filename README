@@ -1,0 +1,29 @@
+										Implementare printf
+
+	Functia iocla_printf primeste un sir de caractere (format), apeleaza functia
+write_stdout pentru a afisa un string si returneaza numarul de bytes scris.
+	Algoritmul implementat parcurge string-ul 'format' si in cazul unor caractere obisnuite
+retine fiecare caracter intr-un vector de char si il printeaza apeland write_stdout. In cazul
+unor specificatii de conversie (indicate de  aparatia caracterului %) va citi urmatorul
+ caracter(specificatorul de conversie) si va intra pe anumite cazuri.
+ 	Caracterul 'd' indica un intreg ce va fi afisat cu semn. Folosind va_arg retinem intr-un
+ int urmatorul parametru al functiei. Folosind o variabila retinem semnul lui. Daca este un
+ numar negativ se va prelucra in modul si in sirul de caractere se va pune - pe prima pozitie.
+ Se apeleaza functia conver_to_string. Aceasta va calcula numarul de zecimale si va
+ construi o putere a lui 10.  Se formeaza sirul de caractere prin impartirea succesiva a
+  numarului la puterile lui 10. Se apeleaza write_stdout cu sirul construit si numarul de zecimale.
+  	In cazul caracterului  'c'  se va retine intr-un sir de caractere acel caracter citit si se va apela
+  write_stdout.
+  	Pentru specificatorul 'u' se va retine argumentul intr-un numar intreg. Daca acesta este
+ negativ se va construi intr-un vector de caractere reprezentarea in baza 2, se va realiza
+ complementul fata de 2 (negarea bitilor si adunarea unui 1) si se va forma un nou numar intreg.
+ Acesta va fi memorat intr-un sir de caractere si apeleaza write_stdout cu acesta.
+ 	In cazul specificatorului 's' se va citi cu va_arg sirul de caractere dat ca parametru si se va
+ afisa apeland write_stdout.
+ 	Caracterul 'x' indica un intreg ce va fi convertit in reprezentare hexazecimala, fara semn.
+ Se transforma numarul in reprezentarea sa in baza 2. Daca este un numar negativ se face
+ complementul sau.  Functia hexa va construi un sir cu reprezentarea in baza 16. Aceasta
+parcurge vectorul din 4 in 4 pozitii si retine fiecare grup de 4 cifre intr-un alt vector. Din acesta
+se realizeaza numarul corespunzator bazei 10 si apoi corespondentul lui in baza 16. Vectorul
+final va contine 8 valori ce provin din  8*4 = 32 biti ai numarului initial. Pentru a afisa se
+construieste un nou vector de caractere ce contine numarul fara cifrele de 0 de dinaintea lui.
